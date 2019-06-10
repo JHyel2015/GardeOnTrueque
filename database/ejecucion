@@ -1,0 +1,22 @@
+TERMINAL
+
+*Antes de nada inicia el servicio de mysql en XAMPP
+
+si estas ubicado en la carpeta server
+
+cd ..\database\
+
+luego
+
+mysql -uroot
+
+despues tiene que salir que se conecto y despues de "mysql>"
+poner *Usuario debe ser primero para crear la base de datos
+
+source usuario.sql
+
+Terminada la ejecucion 
+
+exit
+
+Ya esta creada la base, por el momento "user"

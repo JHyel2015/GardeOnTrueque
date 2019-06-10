@@ -1,0 +1,7 @@
+comando para iniciar el servidor
+
+npm run build
+
+otra terminal
+
+npm run dev

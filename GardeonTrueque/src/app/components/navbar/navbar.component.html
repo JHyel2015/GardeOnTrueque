@@ -1,0 +1,43 @@
+<section id="navBar" class="mb-3 mt-3"  *ngIf="isLogged && !toShowNavbar()">
+  <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
+    <!-- <a class="navbar-brand" routerLink="/">{{app_name}}</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav mr-auto ml-5">
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="#" routerLinkActive="active">Subastas</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="#" routerLinkActive="active">Trueques</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="#" routerLinkActive="active">Configuracion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#" routerLinkActive="active">Ayuda</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto mr-5">
+        <li class="nav-item" *ngIf="isLogged">
+          <div class="dropdown" *ngIf="isLogged">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{username}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+              <button routerLink="/user/profile"class="dropdown-item" type="button"><i class="fa fa-user"></i> Profile</button>
+              <div class="dropdown-divider"></div>
+              <button routerLink="/" class="dropdown-item" type="button" (click)="onLogout()">Cerrar Sesión</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>
