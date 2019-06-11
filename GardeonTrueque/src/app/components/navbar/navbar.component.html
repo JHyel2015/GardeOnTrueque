@@ -1,5 +1,5 @@
 <section id="navBar" class="mb-3 mt-3"  *ngIf="isLogged && !toShowNavbar()">
-  <nav class="navbar navbar-expand-md navbar-light sticky-top bg-light">
+  <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
     <!-- <a class="navbar-brand" routerLink="/">{{app_name}}</a> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
       <ul class="navbar-nav ml-auto mr-5">
         <li class="nav-item" *ngIf="isLogged">
           <div class="dropdown" *ngIf="isLogged">
-            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{username}}
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
