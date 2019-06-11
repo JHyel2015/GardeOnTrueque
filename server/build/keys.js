@@ -10,9 +10,9 @@ exports.default = {
     // }
     // En la nube
     database: {
-        host: 'sql10.freemysqlhosting.net',
-        user: 'sql10295120',
-        password: 'L47maXIWlS',
-        database: 'sql10295120'
+        host: 'bq6qmxaejoaypeckwevl-mysql.services.clever-cloud.com',
+        user: 'u7tmyg5xeuwyyspi',
+        password: 'ckwGlf4jvFzxrknOOwCN',
+        database: 'bq6qmxaejoaypeckwevl'
     }
 };
