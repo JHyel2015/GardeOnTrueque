@@ -11,7 +11,6 @@ import { AuthGuard } from "./guards/auth.guard";
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'user/login', component: LoginComponent },
-  //{ path: 'user/logingoogle', component: LoginGoogleComponent},
   { path: 'user/passwordforgot', component: PasswordForgotComponent},
   { path: 'user/register', component: RegisterComponent},
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
