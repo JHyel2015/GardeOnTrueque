@@ -8,7 +8,8 @@
 /bazel-out
 
 # dependencies
-/node_modules
+/node_modules/*
+!/node_modules/bootstrap/dist/bootstrap.min.css
 
 # profiling files
 chrome-profiler-events.json
