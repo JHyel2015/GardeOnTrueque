@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class DataApiService {
 
-  API_URI = 'http://localhost:3000/api';
+  //API_URI = 'http://localhost:3000/api';
+  API_URI = 'https://us-central1-gardeon-trueque.cloudfunctions.net/serverdb/api';
 
   constructor(private http: HttpClient) { }
 
