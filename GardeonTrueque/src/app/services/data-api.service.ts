@@ -16,18 +16,17 @@ export class DataApiService {
   getUsers() {
     return this.http.get(`${this.API_URI}/users`);
   }
-  getUser(id: string){
-    return this.http.get(`${this.API_URI}/users/${id}`);
+  getUser(uid: string){
+    return this.http.get(`${this.API_URI}/users/${uid}`);
   }
-  deleteUser(id: string) {
-    return this.http.delete(`${this.API_URI}/users/${id}`);
-  }
-
+  // deleteUser(uid: string) {
+  //   return this.http.delete(`${this.API_URI}/users/${uid}`);
+  // }
   saveUser(user: UserInterface) {
     return this.http.post(`${this.API_URI}/users`, user);
   }
 
-  updateUser(id: string|number, updatedUser: UserInterface): Observable<UserInterface> {
-    return this.http.put(`${this.API_URI}/users/${id}`, updatedUser);
+  updateUser(uid: string|number, updatedUser: UserInterface): Observable<UserInterface> {
+    return this.http.put(`${this.API_URI}/users/${uid}`, updatedUser);
   }
 }
