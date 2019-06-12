@@ -6,6 +6,7 @@ import { UserInterface } from "../../../models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from 'firebase/app';
 import { DataApiService } from "../../../services/data-api.service";
+import SimpleCrypto from "simple-crypto-js";
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,7 @@ export class RegisterComponent implements OnInit {
     useremail: '',
     userpassword: ''
   }
+  credential?;
 
   constructor(private router: Router, private authService: AuthService, private app: AppComponent, private afsAuth: AngularFireAuth, private dataapi: DataApiService) { }
   
@@ -42,6 +44,8 @@ export class RegisterComponent implements OnInit {
   }
   onAddUser() {
     if (this.user.userpassword.match(this.confirmpassword)) {
+      if(this.credential !== undefined)
+        auth.GoogleAuthProvider.credential(this.credential);
       this.authService.isAuth().subscribe( user => {
         if (user) {
           this.user.uid = user.uid;
@@ -85,6 +89,7 @@ export class RegisterComponent implements OnInit {
   onAddUserGoogle() {
     this.authService.loginGoogleUser().then((res) => {
       if (res.credential) {
+        this.credential = res.credential;
         console.log(res.user);
       }
     });
@@ -94,7 +99,8 @@ export class RegisterComponent implements OnInit {
         this.user.user_name = user.displayName;
         this.user.useremail = user.email;
       }
-    });
+    });    
+    this.authService.logoutUser();
     console.log(this.user);
   }
   onLoginGoogle(): void {
@@ -110,12 +116,30 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/']);
   }
   onSaveNewUser() {
-    this.dataapi.saveUser(this.user)
+    this.dataapi.getUser(this.user.uid)
       .subscribe(
         res => {
-          console.log(res);
+          console.log('suscribe', res);
+          this.dataapi.updateUser(this.user.uid, this.user)
+            .subscribe(
+              res => {
+                console.log(res);
+              },
+              err => console.log(err.message)
+            )
         },
-        err => console.log(err.message)
+        err => {
+          console.log(err.error.text)
+          var simplecrypto = new SimpleCrypto(this.user.uid);
+          this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
+          this.dataapi.saveUser(this.user)
+            .subscribe(
+              res => {
+                console.log(res);
+              },
+              err => console.log(err.message)
+            )
+        }
       )
   }
   onCancel() {
