@@ -37,7 +37,7 @@ export class PasswordForgotComponent implements OnInit {
     this.router.navigate([route]);
   }
   onCancel(){
-    
+    this.onLoginRedirect('/');
   }
 
 }
