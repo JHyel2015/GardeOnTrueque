@@ -21,8 +21,8 @@ class UsersController {
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const users = yield database_1.default.query('SELECT * FROM users WHERE user_id = ?', [id]);
+            const { uid } = req.params;
+            const users = yield database_1.default.query('SELECT * FROM users WHERE uid = ?', [uid]);
             console.log(users.length);
             if (users.length > 0) {
                 return res.json(users[0]);
@@ -38,17 +38,10 @@ class UsersController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
+            const { uid } = req.params;
             const oldUser = req.body;
-            yield database_1.default.query('UPDATE users set ? WHERE user_id = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE users set ? WHERE uid = ?', [req.body, uid]);
             res.json({ message: "The user was Updated" });
-        });
-    }
-    delete(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('DELETE FROM users WHERE user_id = ?', [id]);
-            res.json({ message: "The user was deleted" });
         });
     }
 }
