@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { AppComponent } from "../../../app.component";
 import { DataApiService } from "../../../services/data-api.service";
+import { UserInterface } from 'src/app/models/user';
+import SimpleCrypto from 'simple-crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +15,15 @@ import { DataApiService } from "../../../services/data-api.service";
 })
 export class LoginComponent implements OnInit {
 
+  user: UserInterface = {
+    user_name: '',
+    uid: '',
+    useremail: '',
+    userpassword: ''
+  }
+  
   constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService, private appComponent: AppComponent, private location: Location, private dataapi: DataApiService) { }
 
-  public email: string = '';
-  public password: string = '';
   public isLogged: boolean = false
   public isError: boolean = false;
 
@@ -33,33 +40,40 @@ export class LoginComponent implements OnInit {
     })
   }
   onLogin(): void {
-    this.authService.loginEmailUser(this.email, this.password)
+    this.authService.loginEmailUser(this.user.useremail, this.user.userpassword)
     .then((res) => {
       this.onLoginRedirect('/');
     }).catch( err => {
       this.onIsError();
-      //this.authService.loginGoogleUser();
-      // this.afAuth.auth.getRedirectResult().then(function(result) {
-      //   if (result) {
-      //     // This gives you a Google Access Token.
-      //     var token = result.credential;
-      //   }
-      //   var user = result.user;
-      // });
-      
-      // // Start a sign in process for an unauthenticated user.
-      // var provider = new auth.GoogleAuthProvider();
-      // provider.addScope('profile');
-      // provider.addScope('email');
-      // this.afAuth.auth.signInWithRedirect(provider);
       console.log('err', err.message);
       //this.onLoginRedirect('/user/register');
     });
   }
   onLoginGoogle(): void {
     this.authService.loginGoogleUser().then( (res) => {
-      var credential = res.credential;
       var user = res.user;
+      this.user.uid = user.uid;
+      this.user.user_name = user.displayName;
+      this.user.useremail = user.email;
+      this.dataapi.getUser(this.user.uid)
+        .subscribe(
+          res => {
+            console.log('suscribe', res);
+          },
+          err => {
+            console.log(err.error.text)
+            var simplecrypto = new SimpleCrypto(this.user.uid);
+            this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
+            this.dataapi.saveUser(this.user)
+              .subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => console.log(err.message)
+              )
+          }
+        )
+
       this.onLoginRedirect('/');
     }).catch( err => {
       this.onIsError();
