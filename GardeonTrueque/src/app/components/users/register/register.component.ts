@@ -1,12 +1,16 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { AuthService } from "../../../services/auth.service";
 import { Router } from "@angular/router";
-import { AppComponent } from "../../../app.component";
-import { UserInterface } from "../../../models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from 'firebase/app';
+import { AngularFireStorage } from "@angular/fire/storage";
+import { NgForm } from "@angular/forms/src/directives/ng_form";
+import { AuthService } from "../../../services/auth.service";
+import { AppComponent } from "../../../app.component";
+import { UserInterface } from "../../../models/user";
 import { DataApiService } from "../../../services/data-api.service";
 import SimpleCrypto from "simple-crypto-js";
+import { finalize } from "rxjs/operators";
+import { Observable } from "rxjs/internal/observable";
 
 @Component({
   selector: 'app-register',
@@ -24,8 +28,16 @@ export class RegisterComponent implements OnInit {
     userpassword: ''
   }
   credential?;
+  uploadPercent: Observable<number>;
+  urlImage: Observable<string>;
 
-  constructor(private router: Router, private authService: AuthService, private app: AppComponent, private afsAuth: AngularFireAuth, private dataapi: DataApiService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private app: AppComponent, 
+    private afsAuth: AngularFireAuth, 
+    private dataapi: DataApiService,
+    private storage: AngularFireStorage) { }
   
   public confirmpassword: string = '';
   public msgError: string = '';
@@ -40,7 +52,7 @@ export class RegisterComponent implements OnInit {
       } else {
         console.log('NO User Logged');
       }
-    })
+    });
   }
   onAddUser() {
     if (this.user.userpassword.match(this.confirmpassword)) {
@@ -102,6 +114,15 @@ export class RegisterComponent implements OnInit {
     });    
     this.authService.logoutUser();
     console.log(this.user);
+  }
+  onUploadImage(img){
+    const id = Math.random().toString(36).substring(2);
+    const file = img.target.files[0];
+    const filePath = `upload/profile_${id}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL())).subscribe;
   }
   onLoginGoogle(): void {
     //this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());

@@ -1,16 +1,16 @@
 <section id="register" class="mb-3 mt-3">
   <h1 class="h1 mb-3 font-weight-normal text-uppercase text-center">Registrate</h1>
   <div class="container">
-    <div class="row">
+    <div class="row-auto">
       <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto">
-        <form #formRegister="ngForm">
+        <form #formRegister="ngForm" >
           <div class="alert alert-danger" role="alert" *ngIf="isError">
             {{msgError}}
           </div>
           <div class="form-group">
             <label><i class="fa fa-user"></i> Nombre de usuario</label>
             <input type="text" name="username" class="form-control" placeholder="" [(ngModel)]="user.user_name" required minlength="4"
-              maxlength="15">
+              maxlength="40">
           </div>
 
           <!-- <div class="alert alert-danger" role="alert" *ngIf="name.touched && !name.valid">
@@ -47,6 +47,9 @@
           <div class="form-group d-flex justify-content-between">
             <button class="m-1 btn btn-danger btn-block" (click)="onCancel()">Cancelar</button>
             <button type="submit" class="m-1 btn btn-success btn-block"  (click)="onAddUser()">Registrar</button>
+            <!-- <ng-template>
+              <button type="submit" class="m-1 btn btn-success btn-block"  (click)="onAddUser()">Registrar</button>
+            </ng-template> -->
           </div>
           <div class="form-group">
             <button class="mt-2 mb-2 btn btn-danger btn-block" (click)="onAddUserGoogle()"><i class="fa fa-google"></i> Google</button>
