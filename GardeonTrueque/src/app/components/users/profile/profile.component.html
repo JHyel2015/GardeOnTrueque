@@ -1,3 +1,58 @@
-<section id="profile" class="container">
-  <h1 class="h1">Mis Datos</h1>
+<app-config-navs></app-config-navs>
+<section id="profile" class="container my-2">
+  <h2 class="h2 my-3 font-weight-normal text-uppercase text-center">Mis Datos</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-7 mx-auto">
+        <form #formProfile="ngForm">
+          <h4 class="h4 my-3 font-weight-normal text-left">Datos de la cuenta</h4>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-user"></i> Nombre de usuario</label>
+            <input type="text" name="username" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.user_name" required minlength="4"
+              maxlength="40">
+          </div>
+          <div class="form-group row">              
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-envelope"></i> Email</label>
+            <input type="email" name="email" readonly class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.useremail" required
+              minlength="12">
+          </div>
+          <h4 class="h4 my-3 font-weight-normal text-left">Datos personales</h4>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-user"></i> Nombre y Apellido</label>
+            <input type="text" name="fullname" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.userfullname"
+              required minlength="15" maxlength="50">
+          </div>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-id-card"></i> Cedula</label>
+            <input type="text" name="cedula" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.usercedula"
+              required minlength="10" maxlength="13">
+          </div>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-facebook-f"></i> Facebook</label>
+            <input type="text" name="facebook" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.userfacebook"
+              required minlength="20">
+          </div>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-phone"></i> Telefono</label>
+            <input type="text" name="phone" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.userphone"
+              required minlength="7" maxlength="10">
+          </div>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-phone"></i> Telefono alternativo</label>
+            <input type="text" name="phone2" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.userphone2"
+              required minlength="7" maxlength="10">
+          </div>
+          <h4 class="h4 my-3 font-weight-normal text-left">Direccón</h4>
+          <div class="form-group row">
+            <label class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ml-sm-3 ml-md-5 ml-lg-5 ml-xl-5"><i class="fa fa-map-marker"></i> Direccón </label>
+            <input type="text" name="address" class="form-control col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" placeholder="" [(ngModel)]="user.useraddress"
+              required minlength="7" maxlength="50">
+          </div>
+          <div class="form-group d-flex flex-row-reverse">
+            <button type="submit" class="col-3 m-1 btn btn-success btn-block"  (click)="onUpdateUser()">Guardar</button>
+          </div>
+        </form>
+      </div> 
+    </div>
+  </div>
 </section>
