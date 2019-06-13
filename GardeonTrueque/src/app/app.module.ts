@@ -21,6 +21,7 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 
 import { DataApiService } from "./services/data-api.service";
+import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { DataApiService } from "./services/data-api.service";
     Page404Component,
     HeaderComponent,
     PasswordForgotComponent,
+    ConfigNavsComponent,
   ],
   imports: [
     BrowserModule,
