@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule, AngularFireDatabase } from "@angular/fire/database";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 
@@ -43,11 +43,12 @@ import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
     HttpClientModule
   ],
   providers: [
-    AngularFireAuth,
+    AngularFireAuthModule,
     DataApiService
   ],
   bootstrap: [AppComponent]
