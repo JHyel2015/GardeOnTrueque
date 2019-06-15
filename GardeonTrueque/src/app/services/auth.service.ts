@@ -12,8 +12,7 @@ export class AuthService {
   public msgError: string = '';
 
   registerUser(username: string, email: string, pass: string) {
-    var register = 
-      this.afsAuth.auth.createUserWithEmailAndPassword( email, pass);
+    var register = this.afsAuth.auth.createUserWithEmailAndPassword( email, pass);
     return register;
   }
   loginEmailUser(email: string, pass: string) {
