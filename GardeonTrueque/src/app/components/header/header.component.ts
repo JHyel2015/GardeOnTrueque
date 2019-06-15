@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { Router } from '@angular/router';
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -10,7 +9,7 @@ import { AuthService } from "../../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService) { }
+  constructor(public afAuth: AngularFireAuth, private authService: AuthService) { }
   public isLogged: boolean = false;
 
   ngOnInit() {
@@ -22,7 +21,7 @@ export class HeaderComponent implements OnInit {
         console.log('NO User Logged');
         this.isLogged = false;
       }
-    })
+    });
   }
   
   toShowHeader(route: string) {

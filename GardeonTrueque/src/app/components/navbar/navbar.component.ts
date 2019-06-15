@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.afAuth.auth.signOut();
+    window.location.reload();
   }
   toShowNavbar() {
     return window.location.pathname === '/user/register' || window.location.pathname === '/user/login';
