@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
   
   toShowHeader(route: string) {
-    return window.location.pathname === route;
+    return window.location.pathname === ('/GardeonTrueque'+route) || window.location.pathname === route;
   }
 
   onLogout() {

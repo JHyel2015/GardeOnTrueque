@@ -36,6 +36,6 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
   toShowNavbar() {
-    return window.location.pathname === '/user/register' || window.location.pathname === '/user/login';
+    return window.location.pathname === ('/GardeonTrueque'+'/user/register') || window.location.pathname === '/user/register' || window.location.pathname === ('/GardeonTrueque'+'/user/login') || window.location.pathname === '/user/login';
   }
 }
