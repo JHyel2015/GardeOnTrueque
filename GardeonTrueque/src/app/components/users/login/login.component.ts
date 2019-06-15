@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   public isLogged: boolean = false
   public isError: boolean = false;
+  public msgError: string = '';
 
   ngOnInit() {
     this.authService.isAuth().subscribe( auth => {
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
     .then((res) => {
       this.onLoginRedirect('/');
     }).catch( err => {
-      this.onIsError();
+      this.onIsError(err.message);
       console.log('err', err.message);
       //this.onLoginRedirect('/user/register');
     });
@@ -76,7 +77,7 @@ export class LoginComponent implements OnInit {
 
       this.onLoginRedirect('/');
     }).catch( err => {
-      this.onIsError();
+      this.onIsError(err.message);
       console.log('err', err.message);
     });
   }
@@ -88,7 +89,8 @@ export class LoginComponent implements OnInit {
   onLoginRedirect(route: string) {
     this.router.navigate([route]);
   }
-  onIsError(): void {
+  onIsError(msgError): void {
+    this.msgError = msgError;
     this.isError = true;
   }
 }
