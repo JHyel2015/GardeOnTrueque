@@ -9,8 +9,7 @@
           </div>
           <div class="form-group">
             <label><i class="fa fa-user"></i> Nombre de usuario</label>
-            <input type="text" name="username" class="form-control" placeholder="" [(ngModel)]="user.user_name" required minlength="4"
-              maxlength="40">
+            <input type="text" name="username" class="form-control" placeholder="" [(ngModel)]="user.user_name" required minlength="4">
           </div>
 
           <!-- <div class="alert alert-danger" role="alert" *ngIf="name.touched && !name.valid">
@@ -29,7 +28,7 @@
           <div class="form-group">
             <label><i class="fa fa-key"></i> Contraseña</label>
             <input type="password" name="password" class="form-control" placeholder="" [(ngModel)]="user.userpassword"
-              required minlength="5" maxlength="10">
+              required minlength="8" maxlength="30">
           </div>
           <!-- <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
             <div *ngIf="password.errors.required">Contraseña es requerido</div>
@@ -38,7 +37,7 @@
           <div class="form-group">
             <label><i class="fa fa-key"></i> Confirmar Contraseña</label>
             <input type="password" name="confirmpassword" class="form-control" placeholder="" [(ngModel)]="confirmpassword"
-              required minlength="5" maxlength="10">
+              required minlength="8" maxlength="30">
           </div>
           <!-- <div class="alert alert-danger" role="alert" *ngIf="confirmpassword.touched && !confirmpassword.valid">
             <div *ngIf="password.errors.required">Contraseña es requerido</div>
