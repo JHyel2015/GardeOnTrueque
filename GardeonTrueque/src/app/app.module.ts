@@ -22,6 +22,7 @@ import { PasswordForgotComponent } from './components/users/password-forgot/pass
 
 import { DataApiService } from "./services/data-api.service";
 import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
+import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs
     HeaderComponent,
     PasswordForgotComponent,
     ConfigNavsComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

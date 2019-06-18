@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/users/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 import { AuthGuard } from "./guards/auth.guard";
+import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'user/passwordforgot', component: PasswordForgotComponent},
   { path: 'user/register', component: RegisterComponent},
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
-  {path: '**', component: Page404Component}
+  { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: '**', component: Page404Component }
 ];
 
 @NgModule({
