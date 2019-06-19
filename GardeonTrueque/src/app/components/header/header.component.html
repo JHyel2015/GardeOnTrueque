@@ -1,17 +1,15 @@
-<section id="header" class="mt-2">
-  <header class="header">
-    <div class="container-fluid">
-      <div class="row flex-wrap justify-content-between">
-        <div class="col-12 col-sm-12 col-md-0 col-lg-1 col-xl-1"></div>
-        <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 text-center my-2">
-          <a routerLink="/" class="display-4 text-decoration-none" *ngIf="!toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Gardeon Trueque</a>
-        </div>
-        <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 d-flex justify-content-center align-items-center">
-          <a class="btn btn-lg btn-success mr-1" routerLink="/user/register" *ngIf="!isLogged && !toShowHeader('/user/register')  && !toShowHeader('/user/passwordforgot')">Registrate</a>
-          <a class="btn btn-lg btn-warning ml-1" routerLink="/user/login" *ngIf="!isLogged && !toShowHeader('/user/login') && !toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Inicia Sesión</a>
-        </div>
+<header class="header">
+  <div class="container-fluid">
+    <div class="row flex-wrap justify-content-between">
+      <div class="col-12 col-sm-12 col-md-0 col-lg-1 col-xl-1"></div>
+      <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 text-center my-2">
+        <a routerLink="/" class="display-4 text-decoration-none" *ngIf="!toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Gardeon Trueque</a>
+      </div>
+      <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 d-flex justify-content-center align-items-center">
+        <a class="btn btn-lg btn-success mr-1" routerLink="/user/register" *ngIf="!isLogged && !toShowHeader('/user/register')  && !toShowHeader('/user/passwordforgot')">Registrate</a>
+        <a class="btn btn-lg btn-warning ml-1" routerLink="/user/login" *ngIf="!isLogged && !toShowHeader('/user/login') && !toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Inicia Sesión</a>
       </div>
     </div>
-    
-  </header>
-</section>
+  </div>
+  
+</header>
