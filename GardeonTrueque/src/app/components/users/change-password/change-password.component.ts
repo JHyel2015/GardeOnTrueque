@@ -4,7 +4,6 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AuthService } from "../../../services/auth.service";
 import { UserInterface } from "../../../models/user";
 import { DataApiService } from "../../../services/data-api.service";
-import { auth } from 'firebase/app';
 import SimpleCrypto from 'simple-crypto-js';
 
 @Component({
@@ -26,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private authService: AuthService, private dataapi: DataApiService, private router: Router) { }
+  constructor(private authService: AuthService, private dataapi: DataApiService, private router: Router, private afsAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.authService.isAuth().subscribe( userLogged => {
@@ -58,7 +57,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   onSave(){
     if (this.password === this.confirmPassword) {
-      auth().currentUser.updatePassword(this.password)
+      this.afsAuth.auth.currentUser.updatePassword(this.password)
         .then( () => {
           this.isError = false;
           console.log('Se actualizo la contraseña');

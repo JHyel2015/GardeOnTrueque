@@ -1,8 +1,8 @@
-<section id="register" class="mb-3 mt-3">
-  <h1 class="h1 mb-3 font-weight-normal text-uppercase text-center">Registrate</h1>
-  <div class="container">
-    <div class="row-auto">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto">
+<section id="register" class="my-4">
+  <h1 class="h1 mb-3 font-weight-normal text-uppercase text-center text-light">Registrate</h1>
+  <div class="container text-light ">
+    <div class="row align-items-center">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto align-self-center">
         <form #formRegister="ngForm" >
           <div class="alert alert-danger" role="alert" *ngIf="isError">
             {{msgError}}
@@ -54,7 +54,7 @@
             <button class="mt-2 mb-2 btn btn-danger btn-block" (click)="onAddUserGoogle()"><i class="fa fa-google"></i> Google</button>
           </div>
           <div class="form-group">
-            <a routerLink="/user/login" class="form-control login-user">Ya tienes una cuenta?</a>
+            <a routerLink="/user/login" class="login-user bg-transparent text-light">Ya tienes una cuenta?</a>
           </div>
         </form>
       </div> 
