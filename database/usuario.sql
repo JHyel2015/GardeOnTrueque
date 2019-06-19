@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS ng_gardeontrueque_db;
+-- DROP DATABASE IF EXISTS x8cq9t23_richard_heredia_db;
 
-CREATE DATABASE ng_gardeontrueque_db;
-USE ng_gardeontrueque_db;
+-- CREATE DATABASE x8cq9t23_richard_heredia_db;
+USE x8cq9t23_richard_heredia_db;
 
 CREATE TABLE users(
     user_id INT(11) NOT NULL auto_increment,

@@ -1,4 +1,4 @@
-USE ng_gardeontrueque_db;
+USE x8cq9t23_richard_heredia_db;
 
 DROP TABLE IF EXISTS planta;
 
