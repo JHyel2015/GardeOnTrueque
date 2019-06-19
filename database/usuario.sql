@@ -3,6 +3,8 @@
 -- CREATE DATABASE x8cq9t23_richard_heredia_db;
 USE x8cq9t23_richard_heredia_db;
 
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users(
     user_id INT(11) NOT NULL auto_increment,
     uid VARCHAR(30) NOT NULL,
