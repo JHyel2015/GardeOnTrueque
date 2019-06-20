@@ -22,7 +22,8 @@ export class ProfileComponent implements OnInit {
     userphone: '',
     userphone2: '',
     usercedula: '',
-    userpassword: ''
+    userpassword: '',
+    created_at: ''
   }
 
   constructor(
@@ -45,6 +46,8 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res => {
           this.user = res[0];
+          var date = new Date(res[0].created_at.toString());
+          this.user.created_at = date.getFullYear() + '-' + (date.getUTCMonth() + 1) + '-' +date.getUTCDate() + ' ' + date.toLocaleTimeString();
         }
       );
   }
@@ -60,9 +63,11 @@ export class ProfileComponent implements OnInit {
     });
     this.dataapi.updateUser(this.user.uid, this.user)
       .subscribe(
-        res => console.log(res)
+        res => {
+          console.log(res)
+          window.location.reload();
+        }
       );
-    window.location.reload();
   }
 
 }
