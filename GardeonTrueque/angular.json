@@ -20,17 +20,20 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/api"
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/font-awesome/css/font-awesome.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/smartwizard/dist/css/smart_wizard.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/popper.js/dist/umd/popper.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/smartwizard/dist/js/jquery.smartWizard.min.js"
             ],
             "es5BrowserSupport": true
           },
