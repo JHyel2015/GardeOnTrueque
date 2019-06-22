@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-password-forgot',
@@ -11,11 +11,11 @@ import { Router } from "@angular/router";
 export class PasswordForgotComponent implements OnInit {
 
   constructor(private router: Router, private afsAuth: AngularFireAuth) { }
-  public email: string = '';
-  public password: string = '';
-  public confirmPass: string = '';
-  public isError: boolean = false;
-  public msgError: string = '';
+  public email = '';
+  public password = '';
+  public confirmPass = '';
+  public isError = false;
+  public msgError = '';
 
   ngOnInit() {
   }
@@ -23,20 +23,20 @@ export class PasswordForgotComponent implements OnInit {
     this.onSendPassReset();
   }
   onSendPassReset() {
-    var emailAddress = this.email;
+    const emailAddress = this.email;
 
     this.afsAuth.auth.sendPasswordResetEmail(emailAddress).then(res => {
       this.onLoginRedirect('/');
     }).catch((error) => {
       console.log(error.message);
       this.isError = true;
-      this.msgError = 'El usuario no esta registrado'
+      this.msgError = 'El usuario no esta registrado';
     });
   }
   onLoginRedirect(route: string) {
     this.router.navigate([route]);
   }
-  onCancel(){
+  onCancel() {
     this.onLoginRedirect('/');
   }
 

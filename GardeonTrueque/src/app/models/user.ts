@@ -11,5 +11,5 @@ export interface UserInterface {
     userfacebook?: string;
     userpassword?: string;
     userphotoUrl?: string;
-    created_at?: Date;
+    created_at?: string;
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AuthService } from "../../../services/auth.service";
-import { UserInterface } from "../../../models/user";
-import { DataApiService } from "../../../services/data-api.service";
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../../services/auth.service';
+import { UserInterface } from '../../../models/user';
+import { DataApiService } from '../../../services/data-api.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,7 @@ import { DataApiService } from "../../../services/data-api.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
+
   user: UserInterface = {
     user_name: '',
     uid: '',
@@ -24,12 +24,12 @@ export class ProfileComponent implements OnInit {
     usercedula: '',
     userpassword: '',
     created_at: ''
-  }
+  };
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private afsAuth: AngularFireAuth, 
+    private afsAuth: AngularFireAuth,
     private dataapi: DataApiService) { }
 
   ngOnInit() {
@@ -38,18 +38,26 @@ export class ProfileComponent implements OnInit {
         this.user.uid = userLogged.uid;
         this.user.user_name = userLogged.displayName;
         this.user.useremail = userLogged.email;
+        this.dataapi.getUser(this.user.uid)
+          // .then( res => {
+          //   console.log(res);
+          // });
+          .subscribe(
+            result => {
+              this.user = result[0];
+              const date = new Date(result[0].created_at.toString());
+              this.user.created_at = date.getFullYear() +
+              '-' + (date.getUTCMonth() + 1) +
+              '-' + date.getUTCDate() +
+              ' ' + date.toLocaleTimeString();
+            }, error => {
+              console.log(error.message);
+            }
+          );
       } else {
         console.log('NO User Logged');
       }
     });
-    this.dataapi.getUser(this.user.uid)
-      .subscribe(
-        res => {
-          this.user = res[0];
-          var date = new Date(res[0].created_at.toString());
-          this.user.created_at = date.getFullYear() + '-' + (date.getUTCMonth() + 1) + '-' +date.getUTCDate() + ' ' + date.toLocaleTimeString();
-        }
-      );
   }
   onUpdateUser() {
     this.authService.isAuth().subscribe( userLogged => {
@@ -64,7 +72,7 @@ export class ProfileComponent implements OnInit {
     this.dataapi.updateUser(this.user.uid, this.user)
       .subscribe(
         res => {
-          console.log(res)
+          console.log(res);
           window.location.reload();
         }
       );

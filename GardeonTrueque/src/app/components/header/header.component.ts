@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AuthService } from "../../services/auth.service";
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import { AuthService } from "../../services/auth.service";
 export class HeaderComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth, private authService: AuthService) { }
-  public isLogged: boolean = false;
+  public isLogged = false;
 
   ngOnInit() {
     this.authService.isAuth().subscribe( auth => {
@@ -23,9 +23,9 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  
+
   toShowHeader(route: string) {
-    return window.location.pathname === ('/GardeonTrueque'+route) || window.location.pathname === route;
+    return window.location.pathname === ('/GardeonTrueque' + route) || window.location.pathname === route;
   }
 
   onLogout() {

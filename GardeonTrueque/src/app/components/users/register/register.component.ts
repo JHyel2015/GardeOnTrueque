@@ -1,16 +1,16 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { AngularFireStorage } from "@angular/fire/storage";
-import { NgForm } from "@angular/forms/src/directives/ng_form";
-import { AuthService } from "../../../services/auth.service";
-import { AppComponent } from "../../../app.component";
-import { UserInterface } from "../../../models/user";
-import { DataApiService } from "../../../services/data-api.service";
-import SimpleCrypto from "simple-crypto-js";
-import { finalize } from "rxjs/operators";
-import { Observable } from "rxjs/internal/observable";
+import { AngularFireStorage } from '@angular/fire/storage';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { AuthService } from '../../../services/auth.service';
+import { AppComponent } from '../../../app.component';
+import { UserInterface } from '../../../models/user';
+import { DataApiService } from '../../../services/data-api.service';
+import SimpleCrypto from 'simple-crypto-js';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/observable';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     uid: '',
     useremail: '',
     userpassword: ''
-  }
+  };
   credential?;
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
@@ -34,14 +34,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private app: AppComponent, 
-    private afsAuth: AngularFireAuth, 
+    private app: AppComponent,
+    private afsAuth: AngularFireAuth,
     private dataapi: DataApiService,
-    private storage: AngularFireStorage) { }
-  
-  public confirmpassword: string = '';
-  public msgError: string = '';
-  public isError: boolean = false;
+    private storage: AngularFireStorage
+    ) { }
+
+  public confirmpassword = '';
+  public msgError = '';
+  public isError = false;
 
   ngOnInit() {
     console.log('Hola');
@@ -56,32 +57,33 @@ export class RegisterComponent implements OnInit {
   }
   onAddUser() {
     if (this.user.userpassword.match(this.confirmpassword)) {
-      if(this.credential !== undefined)
+      if (this.credential !== undefined) {
         auth.GoogleAuthProvider.credential(this.credential);
+      }
       this.authService.isAuth().subscribe( user => {
         if (user) {
           this.user.uid = user.uid;
           this.user.user_name = user.displayName;
           this.user.useremail = user.email;
-          var credential = auth.EmailAuthProvider.credential(this.user.useremail, this.user.userpassword);
+          const credential = auth.EmailAuthProvider.credential(this.user.useremail, this.user.userpassword);
           this.afsAuth.auth.currentUser.linkWithCredential(credential).then( userCred => {
-            var user = userCred.user;
+            // const user = userCred.user;
             this.onSaveNewUser();
             this.onLoginRedirect();
           }).catch( err => {
             console.log('El usuario ya existe');
             this.onIsError( 'Usuario ya existe:\n' + err.message );
-          })
-          
+          });
+
         } else {
           this.authService.registerUser( this.user.user_name, this.user.useremail, this.user.userpassword)
-            .then(( user ) => {
-              if (user) {
-                  this.user.uid = user.user.uid;
-                  user.user.updateProfile({
+            .then(( userReg ) => {
+              if (userReg) {
+                  this.user.uid = userReg.user.uid;
+                  userReg.user.updateProfile({
                   displayName: this.user.user_name
                   }).then((res) => {
-                    console.log('Username Updated')
+                    console.log('Username Updated');
                   });
               }
               console.log(this.user.uid);
@@ -111,21 +113,21 @@ export class RegisterComponent implements OnInit {
         this.user.user_name = user.displayName;
         this.user.useremail = user.email;
       }
-    });    
+    });
     this.authService.logoutUser();
     console.log(this.user);
   }
-  onUploadImage(img){
+  onUploadImage(img) {
     const id = Math.random().toString(36).substring(2);
     const file = img.target.files[0];
     const filePath = `upload/profile_${id}`;
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     this.uploadPercent = task.percentageChanges();
-    task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL())).subscribe;
+    task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL()) ).subscribe();
   }
   onLoginGoogle(): void {
-    //this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
+    // this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
     this.authService.loginGoogleUser().then( (res) => {
       this.onLoginRedirect();
     }).catch( err => {
@@ -143,25 +145,25 @@ export class RegisterComponent implements OnInit {
           console.log('suscribe', res);
           this.dataapi.updateUser(this.user.uid, this.user)
             .subscribe(
-              res => {
-                console.log(res);
+              result => {
+                console.log(result);
               },
-              err => console.log(err.message)
-            )
+              error => console.log(error.message)
+            );
         },
         err => {
-          console.log(err.error.text)
-          var simplecrypto = new SimpleCrypto(this.user.uid);
+          console.log(err.error.text);
+          const simplecrypto = new SimpleCrypto(this.user.uid);
           this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
           this.dataapi.saveUser(this.user)
             .subscribe(
               res => {
                 console.log(res);
               },
-              err => console.log(err.message)
-            )
+              error => console.log(error.message)
+            );
         }
-      )
+      );
   }
   onCancel() {
     this.authService.logoutUser();

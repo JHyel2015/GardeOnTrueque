@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from "../../services/auth.service";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 export class HomeComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth, private router: Router, private authService: AuthService)  { }
-  public isLogged: boolean = false;
+  public isLogged = false;
 
   ngOnInit() {
     this.authService.isAuth().subscribe( user => {
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         console.log('NO User Logged');
         this.isLogged = false;
       }
-    })
+    });
   }
 
   onLogout() {

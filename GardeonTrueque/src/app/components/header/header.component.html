@@ -6,8 +6,8 @@
         <a routerLink="/" class="display-4 text-decoration-none" *ngIf="!toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Gardeon Trueque</a>
       </div>
       <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4 d-flex justify-content-center align-items-center">
-        <a class="btn btn-lg btn-success mr-1" routerLink="/user/register" *ngIf="!isLogged && !toShowHeader('/user/register')  && !toShowHeader('/user/passwordforgot')">Registrate</a>
-        <a class="btn btn-lg btn-warning ml-1" routerLink="/user/login" *ngIf="!isLogged && !toShowHeader('/user/login') && !toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Inicia Sesión</a>
+        <a class="btn btn btn-success mr-1" routerLink="/user/register" *ngIf="!isLogged && !toShowHeader('/user/register')  && !toShowHeader('/user/passwordforgot')">Registrate</a>
+        <a class="btn btn btn-warning ml-1" routerLink="/user/login" *ngIf="!isLogged && !toShowHeader('/user/login') && !toShowHeader('/user/register') && !toShowHeader('/user/passwordforgot')">Inicia Sesión</a>
       </div>
     </div>
   </div>
