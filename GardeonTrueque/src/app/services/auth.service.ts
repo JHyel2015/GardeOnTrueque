@@ -16,13 +16,10 @@ export class AuthService {
     return register;
   }
   loginEmailUser(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.afsAuth.auth.signInWithEmailAndPassword(email, pass)
-        .then( userData => resolve(userData), err => reject(err));
-    });
+    return this.afsAuth.auth.signInWithEmailAndPassword(email, pass);
   }
-  loginGoogleUser() {
-    return this.afsAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
+  async loginGoogleUser() {
+    return await this.afsAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
     // return this.afsAuth.auth.getRedirectResult();
   }
   logoutUser() {
