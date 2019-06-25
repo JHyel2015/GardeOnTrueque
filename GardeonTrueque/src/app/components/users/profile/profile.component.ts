@@ -44,8 +44,10 @@ export class ProfileComponent implements OnInit {
           // });
           .subscribe(
             result => {
-              this.user = result[0];
-              const date = new Date(result[0].created_at.toString());
+              // console.log(result);
+              this.user = result;
+              // console.log(this.user);
+              const date = new Date(result.created_at.toString());
               this.user.created_at = date.getFullYear() +
               '-' + (date.getUTCMonth() + 1) +
               '-' + date.getUTCDate() +
@@ -58,6 +60,7 @@ export class ProfileComponent implements OnInit {
         console.log('NO User Logged');
       }
     });
+    // console.log(this.user);
   }
   onUpdateUser() {
     this.authService.isAuth().subscribe( userLogged => {

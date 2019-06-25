@@ -69,10 +69,11 @@ export class RegisterComponent implements OnInit {
           this.afsAuth.auth.currentUser.linkWithCredential(credential).then( userCred => {
             // const user = userCred.user;
             this.onSaveNewUser();
-            this.onLoginRedirect();
+            this.onLoginRedirect('/');
           }).catch( err => {
-            console.log('El usuario ya existe');
-            this.onIsError( 'Usuario ya existe:\n' + err.message );
+            console.log('El usuario ya existe: ' + err.message );
+            this.onIsError( 'Usuario ya existe');
+            this.onLogout();
           });
 
         } else {
@@ -88,7 +89,7 @@ export class RegisterComponent implements OnInit {
               }
               console.log(this.user.uid);
               this.onSaveNewUser();
-              this.onLoginRedirect();
+              this.onLoginRedirect('/');
             }).catch( err => {
               this.onIsError(err.message);
               console.log( 'err', err.message);
@@ -129,16 +130,18 @@ export class RegisterComponent implements OnInit {
   onLoginGoogle(): void {
     // this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
     this.authService.loginGoogleUser().then( (res) => {
-      this.onLoginRedirect();
+      this.onLoginRedirect('/');
     }).catch( err => {
       this.onIsError(err.message);
       console.log('err', err.message);
     });
   }
-  onLoginRedirect() {
-    this.router.navigate(['/']);
+  onLoginRedirect(link: string) {
+    this.router.navigate([link]);
   }
   onSaveNewUser() {
+    const simplecrypto = new SimpleCrypto(this.user.uid);
+    this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
     this.dataapi.getUser(this.user.uid)
       .subscribe(
         res => {
@@ -153,8 +156,6 @@ export class RegisterComponent implements OnInit {
         },
         err => {
           console.log(err.error.text);
-          const simplecrypto = new SimpleCrypto(this.user.uid);
-          this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
           this.dataapi.saveUser(this.user)
             .subscribe(
               res => {
@@ -172,6 +173,9 @@ export class RegisterComponent implements OnInit {
   onIsError(error: string): void {
     this.isError = true;
     this.msgError = error;
+  }
+  onLogout(): void {
+    this.authService.logoutUser();
   }
 
 }
