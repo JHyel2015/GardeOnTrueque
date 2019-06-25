@@ -23,6 +23,8 @@ import { PasswordForgotComponent } from './components/users/password-forgot/pass
 import { DataApiService } from './services/data-api.service';
 import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HttpInterceptorModule } from './models/httpInterceptor';
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { ChangePasswordComponent } from './components/users/change-password/chan
     PasswordForgotComponent,
     ConfigNavsComponent,
     ChangePasswordComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { ChangePasswordComponent } from './components/users/change-password/chan
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpInterceptorModule
   ],
   providers: [
     AngularFireAuthModule,
