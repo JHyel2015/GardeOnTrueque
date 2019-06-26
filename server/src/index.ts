@@ -4,6 +4,9 @@ import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
 import usersRoutes from './routes/userRoutes';
+import changeRoutes from './routes/changeRoutes';
+import adRoutes from './routes/adRoutes';
+import plantRoutes from './routes/plantRoutes';
 
 class Server {
 
@@ -27,6 +30,9 @@ class Server {
     routes(): void {
         this.app.use('/', indexRoutes);
         this.app.use('/api/users', usersRoutes);
+        this.app.use('/api/changes', changeRoutes);
+        this.app.use('/api/ads', adRoutes);
+        this.app.use('/api/plants', plantRoutes);
     }
 
     start() {
