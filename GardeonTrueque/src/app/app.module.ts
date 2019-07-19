@@ -24,7 +24,6 @@ import { DataApiService } from './services/data-api.service';
 import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpInterceptorModule } from './models/httpInterceptor';
 
 
 @NgModule({
@@ -51,7 +50,6 @@ import { HttpInterceptorModule } from './models/httpInterceptor';
     AngularFireAuthModule,
     AngularFireStorageModule,
     HttpClientModule,
-    HttpInterceptorModule
   ],
   providers: [
     AngularFireAuthModule,
