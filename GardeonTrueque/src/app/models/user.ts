@@ -1,15 +1,16 @@
 export interface UserInterface {
-    user_id?: string;
+    id?: number;
     uid?: string;
-    user_name?: string;
-    userfullname?: string;
-    usercedula?: string;
-    useremail?: string;
-    useraddress?: string;
-    userphone?: string;
-    userphone2?: string;
-    userfacebook?: string;
-    userpassword?: string;
-    userphotoUrl?: string;
-    created_at?: string;
+    username?: string;
+    fullname?: string;
+    displayName?: string;
+    cedula?: string;
+    email?: string;
+    address?: string;
+    phone?: string;
+    phone2?: string;
+    facebook?: string;
+    password?: string;
+    photoUrl?: string;
+    createdAt?: string;
 }

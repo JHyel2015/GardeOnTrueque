@@ -15,10 +15,9 @@ import { auth } from 'firebase/app';
 export class ChangePasswordComponent implements OnInit {
 
   user: UserInterface = {
-    user_name: '',
     uid: '',
-    useremail: '',
-    userpassword: ''
+    email: '',
+    password: ''
   };
   isError = false;
   isReLogged = false;
@@ -46,8 +45,8 @@ export class ChangePasswordComponent implements OnInit {
             this.onIsError('Usuario no tiene configurada una contraseña. Configura una contraseña. Necesitara iniciar sesion nuevamente');
             console.log('no encontrado');
           }
-          this.user.user_name = userLogged.displayName;
-          this.user.useremail = userLogged.email;
+          this.user.displayName = userLogged.displayName;
+          this.user.email = userLogged.email;
         } else {
           console.log('NO User Logged');
         }
@@ -55,10 +54,10 @@ export class ChangePasswordComponent implements OnInit {
     }
 
   ngOnInit() {
-    console.log(this.havePass);
+    // console.log(this.havePass);
   }
   onContinue() {
-    this.authService.loginEmailUser(this.user.useremail, this.user.userpassword)
+    this.authService.loginEmailUser(this.user.email, this.user.password)
       .then( res => {
         this.isReLogged = true;
         this.isError = false;
@@ -69,11 +68,11 @@ export class ChangePasswordComponent implements OnInit {
   }
   onAddPass() {
     if (this.password === this.confirmPassword) {
-      this.user.userpassword = this.password;
+      this.user.password = this.password;
       this.authService.isAuth().subscribe( async userLogged => {
         // userLogged.cre
         await userLogged.reauthenticateWithPopup(new auth.GoogleAuthProvider());
-        const credential = auth.EmailAuthProvider.credential(this.user.useremail, this.user.userpassword);
+        const credential = auth.EmailAuthProvider.credential(this.user.email, this.user.password);
         userLogged.linkWithCredential(credential).then( userCred => {
           // const user = userCred.user;
           this.onCryptoPass();
@@ -117,7 +116,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   onCryptoPass() {
     const simplecrypto = new SimpleCrypto(this.user.uid);
-    this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
+    this.user.password = simplecrypto.encrypt(this.user.password);
   }
   onRedirect(route: string) {
     this.router.navigate([route]);

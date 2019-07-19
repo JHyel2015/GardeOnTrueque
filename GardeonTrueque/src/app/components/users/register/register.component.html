@@ -18,7 +18,7 @@
           </div> -->
           <div class="form-group">              
             <label><i class="fa fa-envelope"></i> Email</label>
-            <input type="email" name="email" class="form-control" placeholder="" [(ngModel)]="user.useremail" required
+            <input type="email" name="email" class="form-control" placeholder="" [(ngModel)]="user.email" required
               minlength="8">
           </div>
           <!-- <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
@@ -27,7 +27,7 @@
           </div> -->
           <div class="form-group">
             <label><i class="fa fa-key"></i> Contraseña</label>
-            <input type="password" name="password" class="form-control" placeholder="" [(ngModel)]="user.userpassword"
+            <input type="password" name="password" class="form-control" placeholder="" [(ngModel)]="user.password"
               required minlength="8" maxlength="30">
           </div>
           <!-- <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">

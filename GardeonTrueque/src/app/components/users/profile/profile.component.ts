@@ -13,17 +13,17 @@ import { DataApiService } from '../../../services/data-api.service';
 export class ProfileComponent implements OnInit {
 
   user: UserInterface = {
-    user_name: '',
+    username: '',
     uid: '',
-    useremail: '',
-    useraddress: '',
-    userfacebook: '',
-    userfullname: '',
-    userphone: '',
-    userphone2: '',
-    usercedula: '',
-    userpassword: '',
-    created_at: ''
+    email: '',
+    address: '',
+    facebook: '',
+    fullname: '',
+    phone: '',
+    phone2: '',
+    cedula: '',
+    password: '',
+    createdAt: ''
   };
 
   constructor(
@@ -36,8 +36,8 @@ export class ProfileComponent implements OnInit {
     this.authService.isAuth().subscribe( userLogged => {
       if (userLogged) {
         this.user.uid = userLogged.uid;
-        this.user.user_name = userLogged.displayName;
-        this.user.useremail = userLogged.email;
+        this.user.displayName = userLogged.displayName;
+        this.user.email = userLogged.email;
         this.dataapi.getUser(this.user.uid)
           // .then( res => {
           //   console.log(res);
@@ -46,9 +46,8 @@ export class ProfileComponent implements OnInit {
             result => {
               // console.log(result);
               this.user = result;
-              // console.log(this.user);
-              const date = new Date(result.created_at.toString());
-              this.user.created_at = date.getFullYear() +
+              const date = new Date(result.createdAt.toString());
+              this.user.createdAt = date.getFullYear() +
               '-' + (date.getUTCMonth() + 1) +
               '-' + date.getUTCDate() +
               ' ' + date.toLocaleTimeString();
@@ -66,7 +65,7 @@ export class ProfileComponent implements OnInit {
     this.authService.isAuth().subscribe( userLogged => {
       if (userLogged) {
         userLogged.updateProfile({
-          displayName: this.user.user_name
+          displayName: this.user.displayName
         }).then( res => console.log('user name update'));
       } else {
         console.log('NO User Logged');

@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  onLogout() {
-    this.afAuth.auth.signOut();
+  async onLogout() {
+    await this.afAuth.auth.signOut();
     window.location.reload();
   }
   toShowNavbar() {

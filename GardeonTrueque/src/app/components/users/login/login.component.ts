@@ -16,10 +16,10 @@ import SimpleCrypto from 'simple-crypto-js';
 export class LoginComponent implements OnInit {
 
   user: UserInterface = {
-    user_name: '',
+    username: '',
     uid: '',
-    useremail: '',
-    userpassword: ''
+    email: '',
+    password: ''
   };
 
   constructor(
@@ -48,21 +48,21 @@ export class LoginComponent implements OnInit {
     });
   }
   onLogin(): void {
-    this.authService.loginEmailUser(this.user.useremail, this.user.userpassword)
+    this.authService.loginEmailUser(this.user.email, this.user.password)
     .then((res) => {
       const userLogged = res.user;
       this.user.uid = userLogged.uid;
-      this.user.user_name = userLogged.displayName;
-      this.user.useremail = userLogged.email;
+      this.user.displayName = userLogged.displayName;
+      this.user.email = userLogged.email;
       this.dataapi.getUser(this.user.uid)
         .subscribe(
           result => {
             console.log('suscribe', result);
           },
           err => {
-            console.log(err.error.text);
+            console.log(err.error.message);
             const simplecrypto = new SimpleCrypto(this.user.uid);
-            this.user.userpassword = simplecrypto.encrypt(this.user.userpassword);
+            this.user.password = simplecrypto.encrypt(this.user.password);
             this.dataapi.saveUser(this.user)
               .subscribe(
                 rs => {
@@ -83,8 +83,8 @@ export class LoginComponent implements OnInit {
     this.authService.loginGoogleUser().then( (res) => {
       const user = res.user;
       this.user.uid = user.uid;
-      this.user.user_name = user.displayName;
-      this.user.useremail = user.email;
+      this.user.displayName = user.displayName;
+      this.user.email = user.email;
       this.dataapi.getUser(this.user.uid)
         .subscribe(
           result => {
