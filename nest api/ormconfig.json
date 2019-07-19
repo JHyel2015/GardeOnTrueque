@@ -1,0 +1,11 @@
+{
+    "type": "mysql",
+    "host": "31.193.228.111",
+    "port": 3306,
+    "username": "x8cq9t23_richard_heredia",
+    "password": "Austincito22",
+    "database": "x8cq9t23_richard_heredia_db",
+    "entities": ["dist/**/**.entity.js"],
+    "synchronize": true,
+    "dropSchema": false
+}
