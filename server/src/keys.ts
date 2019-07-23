@@ -2,10 +2,10 @@ export default {
 
     // LocalHost
     database: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'ng_gardeontrueque_db'
+        host: 'xx.xxx.xxx.xxx',
+        user: 'x8cq9t23_richard_heredia',
+        password: 'Austincito22',
+        database: 'x8cq9t23_richard_heredia_db'
     }
 
     // En la nube
