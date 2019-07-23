@@ -2,11 +2,11 @@
 
 # compiled output
 /public
+/build
+/dist
 .firebase
 .firebaserc
 firebase.json
-/build
-/dist
 /tmp
 /out-tsc
 /functions
