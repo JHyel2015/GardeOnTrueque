@@ -98,16 +98,16 @@ export class ChangePasswordComponent implements OnInit {
           this.isError = false;
           console.log('Se actualizo la contraseña');
           this.onCryptoPass();
+          this.dataapi.updateUser(this.user.uid, this.user)
+            .subscribe(
+              res => {
+                console.log(res);
+              },
+              err => console.log(err.message)
+            );
         }).catch( err => {
           this.onIsError('No se pudo cambiar la contraseña');
         });
-      this.dataapi.updateUser(this.user.uid, this.user)
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => console.log(err.message)
-        );
       this.onRedirect('/user/profile');
       // window.location.reload();
     } else {

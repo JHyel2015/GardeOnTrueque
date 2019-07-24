@@ -58,6 +58,12 @@ export class LoginComponent implements OnInit {
         .subscribe(
           result => {
             console.log('suscribe', result);
+            if (result.password !== this.user.password) {
+              const simplecrypto = new SimpleCrypto(this.user.uid);
+              this.user.password = simplecrypto.encrypt(this.user.password);
+              this.dataapi.updateUser(result.uid, this.user)
+                .subscribe(upRes => console.log(upRes), upErr => console.log(upErr));
+            }
           },
           err => {
             console.log(err.error.message);

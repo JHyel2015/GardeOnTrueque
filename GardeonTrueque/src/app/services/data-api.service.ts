@@ -40,7 +40,7 @@ export class DataApiService {
     return this.http.post<UserInterface>(`${this.API_URI}/users/create`, user);
   }
 
-  updateUser(uid: string|number, updatedUser: UserInterface): Observable<UserInterface> {
+  updateUser(uid: string|number, updatedUser: UserInterface): Observable<any> {
     return this.http.put<UserInterface>(`${this.API_URI}/users/update?id=${uid}`, updatedUser);
     // return this.http.put<UserInterface>(`${this.API_URI}/updateUser.php`, updatedUser);
   }

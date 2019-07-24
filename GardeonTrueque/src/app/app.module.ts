@@ -15,9 +15,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 
 import { DataApiService } from './services/data-api.service';
@@ -53,6 +54,7 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   providers: [
     AngularFireAuthModule,
+    AngularFireStorageModule,
     DataApiService
   ],
   bootstrap: [AppComponent]

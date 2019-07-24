@@ -34,3 +34,4 @@ sonar-project.properties
 
 # scanner
 /.scannerwork
+/api php
