@@ -25,6 +25,7 @@ import { DataApiService } from './services/data-api.service';
 import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MypostsComponent } from './components/myposts/myposts.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ConfigNavsComponent,
     ChangePasswordComponent,
     FooterComponent,
+    MypostsComponent,
   ],
   imports: [
     BrowserModule,
