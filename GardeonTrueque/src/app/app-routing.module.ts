@@ -8,6 +8,7 @@ import { Page404Component } from './components/page404/page404.component';
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
+import { AuctionsComponent } from './components/auctions/auctions.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent},
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
   { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
   { path: '**', component: Page404Component }
 ];
 
