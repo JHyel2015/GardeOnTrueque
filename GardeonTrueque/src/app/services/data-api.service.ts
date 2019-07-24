@@ -15,9 +15,7 @@ const httpOptions = {
 })
 export class DataApiService {
 
-  // API_URI = 'http://www.camespa.net/api'; fue de prueba
   API_URI = 'http://localhost:3000';
-  // API_URI = 'https://us-central1-gardeon-trueque.cloudfunctions.net/serverdb/api';
 
   constructor(private http: HttpClient) { }
 
