@@ -24,8 +24,6 @@ export class DataApiService {
   }
 
   getUser(uid: string|number): Observable<UserInterface> {
-    // console.log(`${this.API_URI}/getUser.php?uid=${uid}`);
-    // return this.http.get<UserInterface>(`${this.API_URI}/getUser.php?uid=${uid}`);
     return this.http.get<UserInterface>(`${this.API_URI}/users/${uid}`);
   }
   // deleteUser(uid: string) {
