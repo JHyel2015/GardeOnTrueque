@@ -13,8 +13,10 @@ export class AuctionsComponent implements OnInit {
 
   constructor(private authService: AuthService, private dataapi: DataApiService, private router: Router) { }
 
-  private ads: AdInterface[];
+  private ads: AdInterface[] = [];
   public date;
+  name: string;
+  haveAds = false;
 
   ngOnInit() {
     this.getCurrentUser();
@@ -40,5 +42,19 @@ export class AuctionsComponent implements OnInit {
         console.log(this.ads);
       }
     );
+  }
+
+  search() {
+    this.haveAds = false;
+    if (this.name !== '') {
+      this.ads = this.ads.filter( res => {
+        return res.plant.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      });
+      if (this.ads.toString() === '') {
+        this.haveAds = true;
+      }
+    } else  {
+      this.ngOnInit();
+    }
   }
 }
