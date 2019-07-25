@@ -3,5 +3,4 @@ export interface AdInterface {
     date?: string;
     status?: string;
     createdAt?: boolean;
-    user?: number;
 }
