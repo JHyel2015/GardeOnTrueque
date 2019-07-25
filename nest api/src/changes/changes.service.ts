@@ -17,7 +17,7 @@ export class ChangesService {
     // }
 
     async findAll(): Promise<EntityChanges[]> {
-      return await this.changeRepository.find();
+      return await this.changeRepository.find({ relations: ['user', 'plant']});
     }
 
     async findOne(id: string): Promise<EntityChanges> {
