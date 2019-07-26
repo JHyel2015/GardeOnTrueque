@@ -17,7 +17,7 @@ export class PlantsService {
     // }
 
     async findAll(): Promise<EntityPlants[]> {
-      return await this.plantRepository.find();
+      return await this.plantRepository.find({ relations: ['user']});
     }
 
     async findOne(id: string): Promise<EntityPlants> {
