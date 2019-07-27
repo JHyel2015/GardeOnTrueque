@@ -26,6 +26,7 @@ import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
+import { NewPostComponent } from './components/new-post/new-post.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AuctionsComponent } from './components/auctions/auctions.component';
     ChangePasswordComponent,
     FooterComponent,
     AuctionsComponent,
+    NewPostComponent,
   ],
   imports: [
     BrowserModule,
