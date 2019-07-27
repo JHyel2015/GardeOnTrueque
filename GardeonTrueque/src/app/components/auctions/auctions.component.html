@@ -6,7 +6,8 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="search()">Search</button>
     </form> -->
     <input class="col-8 col-md-6 col-lg-4 form-control mx-sm-2" type="text" placeholder="Buscar" [(ngModel)]="name" name="name" (input)="search()">
-    <a class="btn btn-primary" routerLink="#">Nuevo Anuncio</a>
+    <a class="btn btn-primary" routerLink="/newPost" routerLinkActive="active">Nuevo Anuncio</a>
+
   </div>
   <div *ngIf="haveAds" class="h2 text-center text-white">No hay resultados</div>
   <ul *ngFor="let ad of ads; index as ad" class="list-group">

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+
+
+  <div class="h1 text-center text-white">Registrar Subasta</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="h4 text-left text-white"> Coloque una imagen</div>
+  <br>
+
+  <div>
+  <form
+    enctype="multipart/form-data" action="uploader.php" method="POST">
+    <input name="uploadedfile" type="file" />
+    <input type="submit" value="Subir imagen" />
+  </form>
+  </div>
+
+  <br>
+  <br>
+  <div class="h4 text-left text-white"> Nombre de la Planta</div>
+
+<div><input type="text" size="15" maxlength="30" value="Nombre" name="nombre"></div>
+
+  <br>
+  <br>
+  <div class="h4 text-left text-white"> Añada una Descripción</div>
+
+ <div> <textarea name="comentarios" rows="10" cols="50">Escriba aquí.</textarea></div>
+
+<div><a class="btn btn-primary" routerLink="/auctions" routerLinkActive="active">Enviar</a></div>
+
+
+
+</div>
+
+
+</body>
+</html>
