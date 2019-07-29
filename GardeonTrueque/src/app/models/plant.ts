@@ -1,9 +1,11 @@
+import { UserInterface } from './user';
+
 export interface PlantInterface {
-    id?: string;
+    id?: number;
     type?: string;
     name?: string;
     image?: string;
     description?: string;
     createdAt?: string;
-    user?: number;
+    user?: UserInterface;
 }
