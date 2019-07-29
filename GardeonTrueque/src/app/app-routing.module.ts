@@ -9,6 +9,8 @@ import { PasswordForgotComponent } from './components/users/password-forgot/pass
 import { AuthGuard } from './guards/auth.guard';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import {MypostsComponent} from './components/myposts/myposts.component';
+import { AuctionsComponent } from './components/auctions/auctions.component';
+import { NewPostComponent} from './components/new-post/new-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
   { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
   { path: 'mispublicaciones', component: MypostsComponent },
+  { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
+  { path: 'newPost', component: NewPostComponent  },
   { path: '**', component: Page404Component }
 
 ];

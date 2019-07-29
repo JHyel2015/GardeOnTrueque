@@ -9,7 +9,7 @@ export class EntityUsers {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @PrimaryColumn({
+    @Column({
             type: 'varchar',
             length: 50,
             name: 'uid',

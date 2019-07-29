@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark" *ngIf="isLogged && !toShowNavbar()">
-  <!-- <a class="navbar-brand" routerLink="/">{{app_name}}</a> -->
+  <a class="navbar-brand" routerLink="/">
+    <img src="/favicon.ico" width="35" height="35" class="d-inline-block align-top" alt="">
+    <!-- GardeonTrueque -->
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,7 +14,7 @@
         <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
-        <a class="nav-link" routerLink="#" routerLinkActive="active">Subastas</a>
+        <a class="nav-link" routerLink="/auctions" routerLinkActive="active">Subastas</a>
       </li>
       <li class="nav-item" *ngIf="isLogged">
         <a class="nav-link" routerLink="/mispublicaciones" routerLinkActive="active">Mis publicaciones</a>
