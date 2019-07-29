@@ -27,6 +27,7 @@ import { ChangePasswordComponent } from './components/users/change-password/chan
 import { FooterComponent } from './components/footer/footer.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { InfoPostComponent } from './components/info-post/info-post.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     FooterComponent,
     AuctionsComponent,
     NewPostComponent,
+    InfoPostComponent,
   ],
   imports: [
     BrowserModule,
