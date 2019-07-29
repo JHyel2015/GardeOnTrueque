@@ -66,11 +66,16 @@ export class DataApiService {
     return ads;
   }
 
-  savePlant(plant: PlantInterface): Observable<any> {
-    return this.http.post<any>(`${this.API_URI}/plants/create`, plant);
+  getAd(id: string|number): Observable<AdInterface> {
+    return this.http.get<AdInterface>(`${this.API_URI}/ads/${id}`);
   }
 
   saveAd(ad: AdInterface): Observable<any> {
     return this.http.post<any>(`${this.API_URI}/ads/create`, ad);
   }
+
+  savePlant(plant: PlantInterface): Observable<any> {
+    return this.http.post<any>(`${this.API_URI}/plants/create`, plant);
+  }
+
 }

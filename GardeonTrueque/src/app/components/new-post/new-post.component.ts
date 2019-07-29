@@ -61,7 +61,6 @@ export class NewPostComponent implements OnInit {
               console.log(error.message);
             }
           );
-      } else {
       }
     });
   }
