@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent},
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
   { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-  { path: 'user/info-post/:id', component: InfoPostComponent, canActivate: [AuthGuard] },
   { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
+  { path: 'info-post/:id', component: InfoPostComponent, canActivate: [AuthGuard] },
   { path: 'newPost', component: NewPostComponent, canActivate: [AuthGuard]  },
   { path: '**', component: Page404Component }
 ];
