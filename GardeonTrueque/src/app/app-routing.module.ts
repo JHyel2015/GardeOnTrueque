@@ -11,6 +11,7 @@ import { ChangePasswordComponent } from './components/users/change-password/chan
 import {MypostsComponent} from './components/myposts/myposts.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
 import { NewPostComponent} from './components/new-post/new-post.component';
+import { InfoPostComponent } from './components/info-post/info-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
   { path: 'mispublicaciones', component: MypostsComponent },
   { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
-  { path: 'newPost', component: NewPostComponent  },
+  { path: 'info-post/:id', component: InfoPostComponent, canActivate: [AuthGuard] },
+  { path: 'newPost', component: NewPostComponent, canActivate: [AuthGuard]  },
   { path: '**', component: Page404Component }
 
 ];

@@ -21,7 +21,7 @@ export class PlantsService {
     }
 
     async findOne(id: string): Promise<EntityPlants> {
-      return await this.plantRepository.findOne(id);
+      return await this.plantRepository.findOne(id, { relations: ['user']});
     }
 
     async createPlant(createPlantDTO: CreatePlantDTO): Promise<EntityPlants> {

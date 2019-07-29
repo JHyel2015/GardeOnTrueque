@@ -27,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MypostsComponent } from './components/myposts/myposts.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { InfoPostComponent } from './components/info-post/info-post.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     MypostsComponent,
     AuctionsComponent,
     NewPostComponent,
+    InfoPostComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class AuctionsComponent implements OnInit {
     this.getCurrentUser();
     this.getAds();
     this.date = new Date();
-    console.log(this.date);
+    // console.log(this.date);
   }
 
   getCurrentUser() {
@@ -39,7 +39,6 @@ export class AuctionsComponent implements OnInit {
     this.dataapi.getAds().subscribe(
       gottenAds => {
         this.ads = gottenAds;
-        console.log(this.ads);
       }
     );
   }

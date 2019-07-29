@@ -11,8 +11,8 @@
   </div>
   <div *ngIf="haveAds" class="h2 text-center text-white">No hay resultados</div>
   <ul *ngFor="let ad of ads; index as ad" class="list-group">
-    <li class="list-group-item">
-      <div class="card border-success mb-3">
+    <li class="list-group-item my-1">
+      <div class="card border-success">
         <div class="row no-gutters">
           <div class="col-4 col-lg-2 justify-content-center">
             <img src="{{ad.plant.image}}" class="card-img" alt="...">
@@ -20,7 +20,7 @@
           <div class="col-8 col-lg-10">
             <div class="card-body align-items-center">
               <div class="d-flex justify-content-between">
-                <a routerLink="" class="text-decoration-none">
+                <a routerLink="/info-post/{{ad.id}}" class="text-decoration-none">
                   <h5 class="card-title">{{ad.plant.name}}</h5>
                   <p class="card-text"><small class="text-muted">{{ad.plant.type}}</small></p>
                 </a>
