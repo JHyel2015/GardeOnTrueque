@@ -21,7 +21,7 @@ export class AdsService {
     }
 
     async findOne(id: string): Promise<EntityAds> {
-      return await this.adRepository.findOne(id);
+      return await this.adRepository.findOne(id, { relations: ['user', 'plant']});
     }
 
     async createAd(createAdDTO: CreateAdDTO): Promise<EntityAds> {
