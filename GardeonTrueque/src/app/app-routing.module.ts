@@ -10,6 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
 import { NewPostComponent} from './components/new-post/new-post.component';
+import { InfoPostComponent } from './components/info-post/info-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -18,8 +19,9 @@ const routes: Routes = [
   { path: 'user/register', component: RegisterComponent},
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only user auth
   { path: 'user/security', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'user/info-post/:id', component: InfoPostComponent, canActivate: [AuthGuard] },
   { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
-  { path: 'newPost', component: NewPostComponent  },
+  { path: 'newPost', component: NewPostComponent, canActivate: [AuthGuard]  },
   { path: '**', component: Page404Component }
 ];
 
