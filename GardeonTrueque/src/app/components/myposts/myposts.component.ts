@@ -16,7 +16,6 @@ export class MypostsComponent implements OnInit {
   ads: AdInterface[] = [];
 
   user: UserInterface = {
-    id: 0,
     username: '',
     uid: '',
     email: '',
@@ -34,11 +33,6 @@ export class MypostsComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
-    this.getAllAds();
-    console.log(this.ads);
-    this.getAds();
-    console.log(this.ads);
-    console.log(this.user);
   }
 
   getCurrentUser() {
@@ -48,15 +42,10 @@ export class MypostsComponent implements OnInit {
         this.user.displayName = userLogged.displayName;
         this.user.email = userLogged.email;
         await this.dataapi.getUser(this.user.uid)
-        // .then( res => {
-        //   console.log(res);
-        // });
           .subscribe(
             result => {
-              // console.log(result);
               this.user = result;
-              this.userId = result.id;
-              console.log(this.userId);
+              this.getAds();
               const date = new Date(result.createdAt.toString());
               this.user.createdAt = date.getFullYear() +
                 '-' + (date.getUTCMonth() + 1) +
@@ -66,27 +55,20 @@ export class MypostsComponent implements OnInit {
               console.log(error.message);
             }
           );
-        console.log(this.userId);
       } else {
         console.log('NO User Logged');
       }
     });
   }
 
-  getAllAds() {
+  getAds() {
     this.dataapi.getAds().subscribe(
       gottenAds => {
-        this.ads = gottenAds;
+        this.ads = gottenAds.filter(res => {
+          return res.user.id === this.user.id;
+        });
       }
     );
   }
 
-  getAds() {
-    console.log(this.userId);
-    this.ads = this.ads.filter(res => {
-    return (res.user.id === 3);
-
-  });
-    console.log(this.ads);
-
-}}
+}

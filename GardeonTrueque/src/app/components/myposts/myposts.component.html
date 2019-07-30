@@ -1,5 +1,30 @@
-<p>
-  myposts works!
-
-</p>
-<h1>hola</h1>
+<div class="container">
+  <div class="h1 text-center text-white">Mis publicaciones</div>
+  <div class="row justify-content-end align-items-center mx-1 my-2">
+    <a class="btn btn-primary" routerLink="/newPost" routerLinkActive="active">Nuevo Anuncio</a>
+  </div>
+  <div *ngIf="haveAds" class="h2 text-center text-white">No hay resultados</div>
+  <ul *ngFor="let ad of ads; index as ad" class="list-group">
+    <li class="list-group-item my-1">
+      <div class="card border-success">
+        <div class="row no-gutters">
+          <div class="col-4 col-lg-2 justify-content-center">
+            <img src="{{ad.plant.image}}" class="card-img" alt="...">
+          </div>
+          <div class="col-8 col-lg-10">
+            <div class="card-body align-items-center">
+              <div class="d-flex justify-content-between">
+                <a routerLink="/info-post/{{ad.id}}" class="text-decoration-none">
+                  <h5 class="card-title">{{ad.plant.name}}</h5>
+                  <p class="card-text"><small class="text-muted">{{ad.plant.type}}</small></p>
+                </a>
+              </div>
+              <p class="card-text">{{ad.plant.description}}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
