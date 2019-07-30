@@ -36,7 +36,10 @@ export class NewPostComponent implements OnInit {
 
   onChange(e) {
     this.file = e.target.files[0];
+    this.urlimage = e.target.files[0].mozFullPath;
+    console.log(this.urlimage);
     console.log(e);
+    console.log(this.file);
   }
 
   uploadImg() {
