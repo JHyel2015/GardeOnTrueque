@@ -18,13 +18,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { PasswordForgotComponent } from './components/users/password-forgot/password-forgot.component';
 
 import { DataApiService } from './services/data-api.service';
 import { ConfigNavsComponent } from './components/navbar/config-navs/config-navs.component';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MypostsComponent } from './components/myposts/myposts.component';
 import { AuctionsComponent } from './components/auctions/auctions.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
 import { InfoPostComponent } from './components/info-post/info-post.component';
@@ -44,6 +44,7 @@ import { InfoPostComponent } from './components/info-post/info-post.component';
     ConfigNavsComponent,
     ChangePasswordComponent,
     FooterComponent,
+    MypostsComponent,
     AuctionsComponent,
     NewPostComponent,
     InfoPostComponent,
