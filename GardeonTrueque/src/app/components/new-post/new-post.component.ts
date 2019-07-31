@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataApiService } from '../../services/data-api.service';
 import { AuthService } from '../../services/auth.service';
 import { UserInterface } from '../../models/user';
@@ -11,8 +12,11 @@ import { AdInterface } from '../../models/ad';
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+  id: number;
 
-  constructor(private authService: AuthService, private dataapi: DataApiService) { }
+  constructor(
+    private rutaActiva: ActivatedRoute, private authService: AuthService, private dataapi: DataApiService, private router: Router
+    ) { }
 
   user: UserInterface;
   plant: PlantInterface = {
@@ -29,8 +33,19 @@ export class NewPostComponent implements OnInit {
   };
   file: File;
   urlimage: string;
+  boton: string;
+  title: string;
 
   ngOnInit() {
+    this.id = this.rutaActiva.snapshot.params.id;
+    if (this.id !== undefined) {
+      this.getAd();
+      this.boton = 'Actualizar';
+      this.title = 'Actualizar';
+    } else {
+      this.boton = 'Guardar';
+      this.title = 'Registrar';
+    }
     this.getCurrentUser();
   }
 
@@ -68,6 +83,14 @@ export class NewPostComponent implements OnInit {
     });
   }
 
+  loadData() {
+    if (this.id !== undefined) {
+      this.updateData();
+    } else {
+      this.uploadData();
+    }
+  }
+
   uploadData() {
     if (this.file !== null) {
       this.plant.user.id = this.user.id;
@@ -82,9 +105,44 @@ export class NewPostComponent implements OnInit {
               this.dataapi.saveAd(this.ad)
                 .subscribe(adSaved => {
                   console.log(adSaved);
+                  this.onRedirect('/auctions');
                 }, err => console.log(err));
             }, err => console.log(err));
         });
     }
+  }
+
+  updateData() {
+    if (this.file !== undefined) {
+      this.dataapi.uploadImage(this.file, 'uploads/' + this.file.name, '')
+        .subscribe( url => {
+          this.plant.image = url;
+          this.dataapi.updatePlant(this.plant.id, this.plant)
+            .subscribe(plantSaved => {
+              console.log(plantSaved);
+              this.onRedirect('/auctions');
+            }, err => console.log(err));
+        });
+    } else {
+      this.dataapi.updatePlant(this.plant.id, this.plant)
+        .subscribe(plantSaved => {
+          console.log(plantSaved);
+          this.onRedirect('/auctions');
+        }, err => console.log(err));
+    }
+  }
+
+  getAd() {
+    this.dataapi.getAd(this.id).subscribe(
+      res => {
+        this.ad = res;
+        this.plant = this.ad.plant;
+      }
+    );
+  }
+
+  onRedirect(route: string) {
+    this.router.navigate([route]);
+    window.location.reload();
   }
 }

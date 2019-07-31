@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Res, Body, Param, Put, HttpStatus, NotFoundException, Query } from '@nestjs/common';
+import { Controller, Get, Post, Res, Body, Param, Put, HttpStatus, NotFoundException, Query, Delete } from '@nestjs/common';
 import { AdsService } from './ads.service';
 import { EntityAds } from './ads.entity';
 import { CreateAdDTO} from './dto/ad.dto';
@@ -49,6 +49,17 @@ export class AdsController {
         return res.status(HttpStatus.OK).json({
             message: 'Ad updated successfully',
             updatedAd,
+        });
+    }
+
+    @Delete('/delete')
+    async deleteAd(
+        @Res() res,
+        @Query('id') id: string,
+    ) {
+        await this.adService.deleteAd(id);
+        return res.status(HttpStatus.OK).json({
+            message: 'Ad deleted successfully',
         });
     }
 }

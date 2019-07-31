@@ -35,4 +35,9 @@ export class AdsService {
       await this.adRepository.update(id, createAdDTO);
       return updatedAd;
     }
+
+    async deleteAd(id: string | number) {
+      const deletedAd = await this.adRepository.findOne(id);
+      return await this.adRepository.remove(deletedAd);
+    }
 }

@@ -71,4 +71,13 @@ export class MypostsComponent implements OnInit {
     );
   }
 
+  deleteAd(id) {
+    this.dataapi.deleteAd(id).subscribe(
+      res => {
+        console.log(res);
+        window.location.reload();
+      }
+    );
+  }
+
 }

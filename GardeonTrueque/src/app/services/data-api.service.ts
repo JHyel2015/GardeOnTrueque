@@ -73,9 +73,19 @@ export class DataApiService {
   saveAd(ad: AdInterface): Observable<any> {
     return this.http.post<any>(`${this.API_URI}/ads/create`, ad);
   }
+  updateAd(id: string|number, updatedAd: AdInterface): Observable<any> {
+    return this.http.put<any>(`${this.API_URI}/ads/update?id=${id}`, updatedAd);
+  }
+  deleteAd(id: string | number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URI}/ads/delete?id=${id}`);
+  }
 
   savePlant(plant: PlantInterface): Observable<any> {
     return this.http.post<any>(`${this.API_URI}/plants/create`, plant);
+  }
+
+  updatePlant(id: string|number, updatedPlant: PlantInterface): Observable<any> {
+    return this.http.put<any>(`${this.API_URI}/plants/update?id=${id}`, updatedPlant);
   }
 
 }

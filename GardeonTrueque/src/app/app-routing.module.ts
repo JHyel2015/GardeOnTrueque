@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'auctions', component: AuctionsComponent, canActivate: [AuthGuard] },
   { path: 'info-post/:id', component: InfoPostComponent, canActivate: [AuthGuard] },
   { path: 'newPost', component: NewPostComponent, canActivate: [AuthGuard]  },
+  { path: 'editPost/:id', component: NewPostComponent, canActivate: [AuthGuard]  },
   { path: '**', component: Page404Component }
 
 ];
